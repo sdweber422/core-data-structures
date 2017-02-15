@@ -1,25 +1,33 @@
 'use strict'
 
+// Attempted implementation without using built-in array methods, such as
+// push(), pop(), slice(), splice(), reduce(), map(), etc.
+
 export default class Stack {
   constructor() {
-    this.list = []
-    this.top = null
+    this._list = []
+    this._topIndex = -1
   }
   push(element) {
-    this.top = element
-    return this.list.push(element)
+    return this._list[ ++this._topIndex ] = element
   }
   pop() {
-    this.top = this.list[this.list.length - 2] || null
-    return this.list.pop() || null
+    let newList = []
+    let topElement = this.peek()
+    this._topIndex--
+    for ( let i = 0; i <= this._topIndex; i++ ) {
+      newList[ i ] = this._list[ i ]
+    }
+    this._list = newList
+    return topElement
   }
   peek() {
-    return this.top || null
+    return this._list[ this._topIndex ] || null
   }
   isEmpty() {
-    return this.list.length === 0
+    return this.length() === 0
   }
   length() {
-    return this.list.length
+    return this._list.length
   }
 }
