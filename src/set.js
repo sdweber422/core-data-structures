@@ -73,18 +73,12 @@ export default class Set {
     if( !otherSet || !Array.isArray( otherSet ) ) {
       return this._data
     }
-    let differenceArray = otherSet.reduce( ( memo, element ) => {
-      if ( !this._data.includes( element ) ) {
+    return this._data.reduce( ( memo, element ) => {
+      if ( !otherSet.includes( element ) ) {
         memo.push( element )
       }
       return memo
     }, [] )
-    return this._data.reduce( ( memo, element ) => {
-      if( !otherSet.includes( element ) ) {
-        memo.push( element )
-      }
-      return memo
-    }, differenceArray )
   }
 
   isSubset( otherSet ) {

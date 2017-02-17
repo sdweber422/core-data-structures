@@ -147,11 +147,11 @@ describe( 'Set', () => {
 
   context( '#difference( otherSet )', () => {
 
-    it( 'should only return values that do not exist in both sets in ascending order', () => {
+    it( 'should only return values that exist in the original set, but not in the given set in ascending order', () => {
       mySet.add( 5 )
       mySet.add( 6 )
       mySet.add( 99 )
-      expect( mySet.difference( myOtherSet ) ).to.eql( [ 7, 8, 99 ] )
+      expect( mySet.difference( myOtherSet ) ).to.eql( [ 99 ] )
     })
 
     it( 'should return the values in original set if not given an array of value(s)', () => {
