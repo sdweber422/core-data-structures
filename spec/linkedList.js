@@ -4,7 +4,7 @@ import LinkedList from '../src/linkedList'
 
 chai.use( chaiChange )
 
-describe.only( 'LinkedList', () => {
+describe( 'LinkedList', () => {
   let myLinkedList
 
   beforeEach( () => {
@@ -289,6 +289,7 @@ describe.only( 'LinkedList', () => {
   })
 
   context( '#clear()', () => {
+    
     it( 'should set the Linked List head and tail to null and size to 0 when invoked', () => {
       myLinkedList.insert( "banana" )
       myLinkedList.insert( "apple" )
@@ -297,7 +298,7 @@ describe.only( 'LinkedList', () => {
       expect( myLinkedList.getTailNode() ).to.be.null
       expect( myLinkedList.size() ).to.eql( 0 )
     })
-    
+
   })
 
 })
