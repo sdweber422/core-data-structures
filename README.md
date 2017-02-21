@@ -6,8 +6,13 @@ Base repository for the [Core Data Structures](https://github.com/GuildCrafts/we
 
 ## Installation and Setup
 
-_Fill this out_
+git clone https://github.com/sdweber422/core-data-structures [repository name]
+cd core-data-structures || [repository name]
+npm install -g eslint
+npm install
+
+## Test
+
+npm test
 
 ## Usage and Examples
-
-_...and this_
