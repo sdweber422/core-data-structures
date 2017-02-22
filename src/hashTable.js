@@ -10,12 +10,13 @@ const node = ( key, value ) => {
 
 export default class HashTable {
 
-	constructor() {
+  constructor() {
     this.length = 0
     this.collection = {}
-	}
+  }}
 
-	put( key, value ) {
+  put( key, value ) {
+
     if ( !value ) {
       throw new Error( 'Missing necessary parameter(s)' )
     }
@@ -34,9 +35,11 @@ export default class HashTable {
     }
 
     this.length++
-	}
 
-	get( key ) {
+  }
+
+  get( key ) {
+
     if ( !key ) {
       throw new Error( 'No key given' )
     }
@@ -59,26 +62,33 @@ export default class HashTable {
     else {
       return null
     }
-	}
 
-	contains( key ) {
+  }
+
+  contains( key ) {
+  
     if ( !key ) {
       throw new Error( 'No key given' )
     }
     if ( typeof key !== 'string' ) {
       throw new Error( 'Key given must be a string' )
     }
-    return this.get( key ) !== null
-	}
 
-	iterate( callback ) {
+    return this.get( key ) !== null
+
+  }
+
+  iterate( callback ) {
+
     if ( typeof callback !== 'function' ) {
       throw new Error( 'No function given' )
     }
-    Object.keys(this.collection).forEach( key => this.collection[ key ].forEach( node => callback( Object.keys( node )[0], Object.values( node )[0] ) ) )
-	}
 
-	remove( key ) {
+    Object.keys(this.collection).forEach( key => this.collection[ key ].forEach( node => callback( Object.keys( node )[0], Object.values( node )[0] ) ) )
+  }
+
+  remove( key ) {
+
     if ( !key ) {
       throw new Error( 'No key given' )
     }
@@ -97,21 +107,28 @@ export default class HashTable {
         bucket.splice( index, 1 )
       }
     })
+
     this.length--
-	}
 
-	size() {
+  }
+
+  size() {
+
     return this.length
-	}
 
-	static hash( key ) {
+  }
+
+  static hash( key ) {
+
     if ( !key ) {
       throw new Error( 'No key given' )
     }
     if ( typeof key !== 'string' ) {
       throw new Error( 'Hashed value must be a string' )
     }
+
     return key.toLowerCase().charCodeAt(0) * ARBITRARY_ZIP_CODE_HASH
-	}
+
+  }
 
 }
