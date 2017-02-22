@@ -13,7 +13,7 @@ export default class HashTable {
   constructor() {
     this.length = 0
     this.collection = {}
-  }}
+  }
 
   put( key, value ) {
 
@@ -66,7 +66,7 @@ export default class HashTable {
   }
 
   contains( key ) {
-  
+
     if ( !key ) {
       throw new Error( 'No key given' )
     }
