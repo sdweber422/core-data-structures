@@ -4,7 +4,7 @@ import DoublyLinkedList from '../src/doublyLinkedList'
 
 chai.use( chaiChange )
 
-describe.only( 'DoublyLinkedList', () => {
+describe( 'DoublyLinkedList', () => {
   let myDoublyLinkedList
 
   beforeEach( () => {
