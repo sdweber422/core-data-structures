@@ -9,10 +9,12 @@
     "babel-register": "^6.18.0",
     "chai": "~1.8.0",
     "chai-change": "^2.1.2",
+    "eslint": "^3.16.0",
     "mocha": "2.0.1"
   },
   "scripts": {
     "build": "babel src -d lib",
-    "test": "mocha --compilers js:babel-register ./spec/*.js"
+    "test": "mocha --compilers js:babel-register ./spec/*.js",
+    "lint": "eslint --color */*.js"
   }
 }
