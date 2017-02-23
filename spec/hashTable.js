@@ -199,7 +199,7 @@ describe( 'HashTable', function() {
 
   })
 
-  context( '#size', function() {
+  describe( '#size', function() {
 
     context( 'when the Hash Table contains { make: "Ford", model: "Crown Victoria", year: 1984 }', function() {
 
@@ -225,7 +225,7 @@ describe( 'HashTable', function() {
 
   })
 
-  context( '.hash', function() {
+  describe( '.hash', function() {
 
     context( 'when provided with a string argument', function() {
 
