@@ -15,6 +15,14 @@ npm install
 
 npm test
 
+## Specs Completed
+[X] Hash Table
+[X] Hash Table Tests
+[X] Binary Search Tree
+[X] Binary Search Tree Tests
+[ ] Directed Graph
+[ ] Directed Graph Tests
+
 ## Usage and Examples
 
 All data structure classes should be implementable using the methods given.
