@@ -6,7 +6,7 @@ chai.use( chaiChange )
 
 describe( 'BinarySearchTree', function() {
 
-  let bst
+  let bst, testArray
 
   beforeEach( function() {
     bst = new BinarySearchTree()
@@ -262,10 +262,87 @@ describe( 'BinarySearchTree', function() {
     })
 
   })
-  // Still working on traversal method
-  // describe( '#traverse', function() {
-  //
-  // })
+
+  describe( '#traverse', function() {
+
+    context( 'when given an "inOrder" order and a function', function() {
+      it( 'should apply the function to each node in the Binary Search Tree in the order requested', function() {
+        bst.insert( 99 )
+        bst.insert( 88 )
+        bst.insert( 77 )
+        bst.insert( 110 )
+        bst.insert( 89 )
+        bst.insert( 107 )
+        testArray = []
+        bst.traverse( 'inOrder', elem => testArray.push( elem.key ) )
+        expect( testArray ).to.eql( [ 77, 88, 89, 99, 107, 110 ] )
+      })
+    })
+
+    context( 'when given an "preOrder" order and a function', function() {
+      it( 'should apply the function to each node in the Binary Search Tree in the order requested', function() {
+        bst.insert( 99 )
+        bst.insert( 88 )
+        bst.insert( 77 )
+        bst.insert( 110 )
+        bst.insert( 89 )
+        bst.insert( 107 )
+        testArray = []
+        bst.traverse( 'preOrder', elem => testArray.push( elem.key ) )
+        expect( testArray ).to.eql( [ 99, 88, 77, 89, 110, 107 ] )
+      })
+    })
+
+    context( 'when given an "postOrder" order and a function', function() {
+      it( 'should apply the function to each node in the Binary Search Tree in the order requested', function() {
+        bst.insert( 99 )
+        bst.insert( 88 )
+        bst.insert( 77 )
+        bst.insert( 110 )
+        bst.insert( 89 )
+        bst.insert( 107 )
+        testArray = []
+        bst.traverse( 'postOrder', elem => testArray.push( elem.key ) )
+        expect( testArray ).to.eql( [ 110, 107, 99, 89, 88, 77 ] )
+      })
+    })
+
+    context( 'when given no parameters', function() {
+      it( 'should throw a "No parameter(s) given" error', function() {
+        bst.insert( 88 )
+        expect( () => bst.traverse() ).to.throw( Error, "No parameter(s) given" )
+      })
+    })
+
+    context( 'when given only one parameter', function() {
+      it( 'should throw an "Only one parameter given" error', function() {
+        bst.insert( 88 )
+        expect( () => bst.traverse( elem => console.log( elem ) ) )
+      })
+    })
+
+    context( 'when given more than two parameters', function() {
+      it( 'should throw a "Too many arguments" error', function() {
+        bst.insert( 88 )
+        expect( () => bst.traverse( "inOrder", elem => console.log( elem ), 'postOrder' ) ).to.throw( Error, "Too many arguments" )
+      })
+    })
+
+    context( 'when given a second parameter that is not a function', function() {
+      it( 'should return a "Second parameter must be a function" error', function() {
+        bst.insert( 88 )
+        expect( () => bst.traverse( 'postOrder', 'inOrder' ) ).to.throw( Error, "Second parameter must be a function" )
+      })
+    })
+
+    context( 'when given an order that is not pre-, post-, or in- order', function() {
+      it( 'should throw an "Order given is not defined" error', function() {
+        bst.insert( 99 )
+        expect( () => bst.traverse( 'someKindOfOrder', elem => console.log( elem ) ) )
+      })
+    })
+
+  })
 
   describe( '#size', function() {
 

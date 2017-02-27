@@ -3,30 +3,23 @@
 class Node {
 
   constructor( key ) {
-
     this.key = key
     this.left = null
     this.right = null
-
   }
 
 }
 
-
 export default class BinarySearchTree {
 
   constructor() {
-
     this.root = null
     this.count = 0
-
   }
-
 
   insert( key ) {
 
     this.validateArgs( [...arguments] )
-
     let node = new Node( key )
 
     if ( this.root === null ) {
@@ -42,7 +35,6 @@ export default class BinarySearchTree {
   search( key ) {
 
     this.validateArgs( [...arguments] )
-
     return this.searcher( this.root, key )
 
   }
@@ -64,20 +56,21 @@ export default class BinarySearchTree {
     if ( arguments.length === 0 ) {
       throw new Error( 'No parameter(s) given' )
     }
+
+    if( arguments.length === 1 ) {
+      throw new Error( 'Only one parameter given' )
+    }
+
     if ( arguments.length > 2 ) {
       throw new Error( 'Too many arguments' )
     }
-    if ( typeof order !== 'string' ) {
-      throw new Error( 'First parameter must be a string' )
-    }
+
     if ( typeof callback !== 'function' ) {
       throw new Error( 'Second parameter must be a function' )
     }
 
-    let result = []
-
     if ( order === 'preOrder' ) {
-      return this.preorder( this.root, callback, result )
+      return this.preorder( this.root, callback )
     }
     else if ( order === 'inOrder' ) {
       return this.inorder( this.root, callback )
@@ -104,6 +97,7 @@ export default class BinarySearchTree {
     if ( node.key === key ) {
       throw new Error( 'Duplicate key not allowed' )
     }
+
     if ( key < node.key ) {
       if ( node.left === null ) {
         this.count++
@@ -130,6 +124,7 @@ export default class BinarySearchTree {
     if ( node === null ) {
       return null
     }
+
     if ( key < node.key ) {
       if ( key === node.key ) {
         return node
@@ -149,37 +144,49 @@ export default class BinarySearchTree {
 
   }
 
-// WIP: preorder and other traversal functions are not complete
-  preorder( baseNode, node, callback, result ) {
+  preorder( node, callback ) {
 
     if( node === null ) {
       return null
     }
 
-    if ( node.left !== null ) {
-      result.push( node )
-      return this.preorder( node, node.left, callback, result )
-    }
-    else if ( node.right !== null ){
-      result.push( node )
-      return this.preorder( node, node.right, callback, result )
-    }
-    else if ( baseNode )
-
-    return result
-
+    callback( node )
+    this.preorder( node.left, callback )
+    this.preorder( node.right, callback )
 
   }
-// WIP: end
+
+  inorder( node, callback ) {
+
+    if( node === null ) {
+      return null
+    }
+
+    this.inorder( node.left, callback )
+    callback( node )
+    this.inorder( node.right, callback )
+
+  }
+
+  postorder( node, callback ) {
+
+    if( node === null ) {
+      return null
+    }
+
+    this.postorder( node.right, callback )
+    callback( node )
+    this.postorder( node.left, callback )
+
+  }
 
   remover( node, key ) {
 
     if ( node === null ) {
       return null
     }
+
     if ( key === node.key) {
-
-
       if ( node.left === null && node.right === null ) {
         this.count--
         return null
@@ -217,6 +224,7 @@ export default class BinarySearchTree {
     }
 
     return node
+
   }
 
   // Error checking
@@ -226,9 +234,11 @@ export default class BinarySearchTree {
     if ( args.length === 0 ) {
       throw new Error( 'No parameter(s) given')
     }
+
     if( args.length > 1 ) {
       throw new Error( 'Too many arguments' )
     }
+
     if( typeof args[0] === 'string' || typeof args[0] === 'number' ) {
       return
     }
